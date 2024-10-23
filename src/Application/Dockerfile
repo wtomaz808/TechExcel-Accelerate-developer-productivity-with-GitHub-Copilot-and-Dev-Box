@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
-COPY src/test.txt
+COPY src/test.txt ./
 #RUN dotnet restore
 
 # Copy everything else and build
