@@ -7,8 +7,8 @@ WORKDIR /app
 # RUN dotnet restore
 
 # Copy the entire project and build the release version
-COPY src/Application/src/RazorPagesTestSample/. ./
-RUN dotnet publish -c Release -o out
+# COPY src/Application/src/RazorPagesTestSample/. ./
+# RUN dotnet publish -c Release -o out
 
 # Use the official ASP.NET Core runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
