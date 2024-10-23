@@ -81,7 +81,7 @@ jobs:
     needs: dockerBuildPush
     environment:
       name: dev
-      url: https://pickels808-dev.azurewebsites.net/
+      url: https://onfp77x2viod4-dev.azurewebsites.net/
     
     steps:
       - name: 'Login via Azure CLI'
@@ -91,7 +91,7 @@ jobs:
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: 'pickels808-dev'
+          app-name: 'onfp77x2viod4-dev'
           images: onfp77x2viod4.azurecr.io/techexcel/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-test:
@@ -100,7 +100,7 @@ jobs:
     needs: deploy-to-dev
     environment:
       name: test
-      url: https://pickels808-test.azurewebsites.net/
+      url: https://onfp77x2viod4-test.azurewebsites.net/
     
     steps:
     - uses: actions/checkout@v3
@@ -112,7 +112,7 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'pickels808-test'
+        app-name: 'onfp77x2viod4-test'
         images: onfp77x2viod4.azurecr.io/techexcel/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-prod:
@@ -121,7 +121,7 @@ jobs:
     needs: deploy-to-test
     environment:
       name: prod
-      url: https://pickels808-prod.azurewebsites.net/
+      url: https://onfp77x2viod4-prod.azurewebsites.net/
     
     steps:
     - uses: actions/checkout@v3
@@ -133,5 +133,5 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'pickels808-prod'
+        app-name: 'onfp77x2viod4-prod'
         images: onfp77x2viod4.azurecr.io/techexcel/dotnetcoreapp:${{github.run_number}}
