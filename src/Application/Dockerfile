@@ -1,15 +1,16 @@
+# Use the official .NET SDK image as a build environment
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
-# Copy csproj and restore as distinct layers
-COPY .src/Application/src/RazorPagesTestSample/*.csproj ./
+# Copy the .csproj file and restore dependencies
+COPY src/Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj ./
 RUN dotnet restore
 
-# Copy everything else and build
-COPY . ..src/Application/src/RazorPagesTestSample/. ./
+# Copy the entire project and build the release version
+COPY src/Application/src/RazorPagesTestSample/. ./
 RUN dotnet publish -c Release -o out
 
-# Build runtime image
+# Use the official ASP.NET Core runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build-env /app/out .
