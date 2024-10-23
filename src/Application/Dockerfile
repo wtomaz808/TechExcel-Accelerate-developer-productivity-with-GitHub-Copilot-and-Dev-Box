@@ -6,13 +6,13 @@ COPY src/Application/src/RazorPagesTestSample/*.csproj ./
 RUN dotnet restore
 
 # Copy everything else and build
-#COPY . ./
-#RUN dotnet publish -c Release -o out
+COPY src/Application/src/RazorPagesTestSample/ . ./
+RUN dotnet publish -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-#COPY --from=build-env /app/out .
+COPY --from=build-env /app/out .
 # Default ASP.NET port changed with .NET 8.0
-#ENV ASPNETCORE_HTTP_PORTS=80
-#ENTRYPOINT ["dotnet", "RazorPagesTestSample.dll"]
+ENV ASPNETCORE_HTTP_PORTS=80
+ENTRYPOINT ["dotnet", "RazorPagesTestSample.dll"]
