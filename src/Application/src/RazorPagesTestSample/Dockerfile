@@ -3,8 +3,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
 
 # Copy the .csproj file and restore dependencies
-COPY src/Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj ./
-RUN dotnet restore
+# COPY src/Application/src/RazorPagesTestSample/RazorPagesTestSample.csproj ./
+# RUN dotnet restore
 
 # Copy the entire project and build the release version
 COPY src/Application/src/RazorPagesTestSample/. ./
